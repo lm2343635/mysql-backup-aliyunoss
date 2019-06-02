@@ -3,6 +3,6 @@ db_user=docker
 db_password=docker
 db_dbname=easyjapanese
 oss_accessKeyId=accessKeyId
-oss_accessKeySecret=<accessKeySecret
+oss_accessKeySecret=accessKeySecret
 oss_endpoint=endpoint
 oss_bucket=bucket
