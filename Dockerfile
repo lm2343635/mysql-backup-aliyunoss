@@ -23,13 +23,4 @@ RUN chmod 0644 /etc/cron.d/backup-cron
 RUN crontab /etc/cron.d/backup-cron
 RUN touch /var/log/cron.log
 
-CMD sed -i 's/<db_host>/'$db_host'/g' config
-CMD sed -i 's/<db_user>/'$db_user'/g' config
-CMD sed -i 's/<db_password>/'$db_password'/g' config
-CMD sed -i 's/<db_dbname>/'$db_dbname'/g' config
-CMD sed -i 's/<oss_accessKeyId>/'$oss_accessKeyId'/g' config
-CMD sed -i 's/<oss_accessKeySecret>/'$oss_accessKeySecret'/g' config
-CMD sed -i 's/<oss_endpoint>/'$oss_endpoint'/g' config
-CMD sed -i 's/<oss_bucket>/'$oss_bucket'/g' config
-
 CMD cron && tail -f /var/log/cron.log

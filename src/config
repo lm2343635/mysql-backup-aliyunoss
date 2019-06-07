@@ -1,9 +1,0 @@
-db_host=<db_host>
-db_user=<db_user>
-db_password=<db_password>
-db_dbname=<db_dbname>
-oss_accessKeyId=<oss_accessKeyId>
-oss_accessKeySecret=<oss_accessKeySecret>
-oss_endpoint=<oss_endpoint>
-oss_bucket=<oss_bucket>
-end
