@@ -8,6 +8,7 @@ RUN mkdir /backup
 COPY src/ /backup
 WORKDIR /backup
 
+ENV cron=""
 ENV db_host="127.0.0.1:3306"
 ENV db_user="docker"
 ENV db_password="docker"
@@ -17,10 +18,6 @@ ENV oss_accessKeySecret="accessKeySecret"
 ENV oss_endpoint="endpoint"
 ENV oss_bucket="bucket"
 
-RUN touch /etc/cron.d/backup-cron
-RUN echo "* * * * * echo Hello world >> /var/log/cron.log 2>&1" > /etc/cron.d/backup-cron
-RUN chmod 0644 /etc/cron.d/backup-cron
-RUN crontab /etc/cron.d/backup-cron
-RUN touch /var/log/cron.log
+RUN bash /backup/init.sh
 
 CMD cron && tail -f /var/log/cron.log
