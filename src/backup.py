@@ -7,20 +7,16 @@ import datetime
 import oss2
 
 def main(argv):
-   accessKeyId = ''
-   accessKeySecret = ''
-   endpoint = ''
-   bucket = ''
-   objectName = ''
-   localFile = ''
    try:
-      opts, args = getopt.getopt(argv,"h:u:p:d:k:s:e:b:o:f:",["host=","user=","password=","database=","accessKeyId=","accessKeySecret=","endpoint=","bucket="])
+      opts, args = getopt.getopt(argv,"h:P:u:p:d:k:s:e:b:o:f:",["host=","port=","user=","password=","database=","accessKeyId=","accessKeySecret=","endpoint=","bucket="])
    except getopt.GetoptError:
-      print ('upload.py -k <accessKeyId> -s <accessKeySecret> -e <endpoint> -b <bucket> -o <objectName> -f <localFile>')
+      print("Params error!")
       sys.exit(2)
    for opt, arg in opts:
       if opt in ("-h", "--host"):
          host = arg
+      elif opt in ("-P", "--port"):
+         port = arg
       elif opt in ("-u", "--user"):
          user = arg
       elif opt in ("-p", "--password"):
@@ -37,6 +33,7 @@ def main(argv):
          bucket = arg
 
    print("host: " + host)
+   print("port: " + port)
    print("user: " + user)
    print("password: " + password)
    print("database: " + database)
@@ -49,7 +46,7 @@ def main(argv):
    now = datetime.datetime.now()
    sql = database + now.strftime('_%Y%m%d_%H%M%S.sql')
    zipfile = sql + '.zip'
-   mysqldump = subprocess.getoutput('mysqldump -h ' + host + ' -u ' + user + ' -p' + password + ' ' + database + ' > ' + sql)
+   mysqldump = subprocess.getoutput('mysqldump -h ' + host + ' -P ' + port + ' -u ' + user + ' -p' + password + ' ' + database + ' > ' + sql)
    print(mysqldump)
    subprocess.getoutput('zip -r ' + zipfile + ' ' + sql)
 

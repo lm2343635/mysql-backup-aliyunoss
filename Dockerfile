@@ -8,8 +8,9 @@ RUN mkdir /backup
 COPY src/ /backup
 WORKDIR /backup
 
-ENV cron=""
-ENV db_host="127.0.0.1:3306"
+ENV cron="* * * * *"
+ENV db_host="127.0.0.1"
+ENV db_port="3306"
 ENV db_user="docker"
 ENV db_password="docker"
 ENV db_dbname="db"
